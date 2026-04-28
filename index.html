@@ -13,25 +13,24 @@
 </head>
 <body>
   <h1>Whole Life Insurance — Knowledge Check</h1>
-  <elevenlabs-convai agent-id="agent_6601kpbt8628er29rfw2x8zesrby">
+  <elevenlabs-convai id="el-widget" agent-id="agent_6601kpbt8628er29rfw2x8zesrby">
   </elevenlabs-convai>
+
+  <script>
+    // Read URL parameters immediately before widget loads
+    var params = new URLSearchParams(window.location.search);
+    var userID = params.get('user_id') || 'Unknown';
+    var courseID = params.get('course_id') || 'NYL-BG-TEST';
+
+    // Set dynamic variables directly on the element before the widget script runs
+    var widget = document.getElementById('el-widget');
+    widget.setAttribute('dynamic-variables', JSON.stringify({
+      user_id: userID,
+      course_id: courseID
+    }));
+  </script>
 
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" 
           async type="text/javascript"></script>
-  <script>
-    window.addEventListener('load', function() {
-      var params = new URLSearchParams(window.location.search);
-      var userID = params.get('user_id') || 'Unknown';
-      var courseID = params.get('course_id') || 'Unknown';
-
-      var widget = document.querySelector('elevenlabs-convai');
-      if (widget) {
-        widget.setAttribute('dynamic-variables', JSON.stringify({
-          user_id: userID,
-          course_id: courseID
-        }));
-      }
-    });
-  </script>
 </body>
 </html>
