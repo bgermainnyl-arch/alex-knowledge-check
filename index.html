@@ -2,33 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Whole Life Insurance — Knowledge Check</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
-      background: #1a1a2e;
+      display: flex;
+      font-family: Arial, sans-serif;
+      background: #0d1f3c;
+    }
+
+    /* LEFT PANEL — photo */
+    .left {
+      width: 45%;
+      height: 100vh;
+      background: url('Alex_crop.png') center top / cover no-repeat;
+      flex-shrink: 0;
+    }
+
+    /* RIGHT PANEL — navy */
+    .right {
+      width: 55%;
+      height: 100vh;
+      background: #0d1f3c;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
+      justify-content: flex-start;
+      padding: 6vh 5vw 0 4vw;
+      position: relative;
     }
-    h1 {
+
+    /* Top label — "Whole Life Introduction" */
+    .label {
+      display: inline-block;
+      background: #5b9bd5;
       color: #ffffff;
-      margin-bottom: 2rem;
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 0 1rem;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      padding: 0.3em 0.6em;
+      margin-bottom: 0.5em;
+      width: fit-content;
     }
-    elevenlabs-convai {
-      display: block;
-      position: static !important;
+
+    /* Big heading — "WRAP-UP" */
+    .heading {
+      font-family: Arial Black, Arial, sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 7rem);
+      color: #f5dfc5;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3em;
+    }
+
+    /* Subheading — "with Agent Alex" */
+    .subheading {
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+      color: #5b9bd5;
     }
   </style>
 </head>
 <body>
-  <h1>Whole Life Insurance — Knowledge Check</h1>
+
+  <div class="left"></div>
+
+  <div class="right">
+    <span class="label">Whole Life Introduction</span>
+    <div class="heading">WRAP-UP</div>
+    <div class="subheading">with Agent Alex</div>
+  </div>
 
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed"
           async type="text/javascript"></script>
@@ -44,21 +95,7 @@
       course_id: courseID
     }));
     document.body.appendChild(widget);
-
-    // Watch for shadow DOM and override fixed positioning
-    var observer = new MutationObserver(function() {
-      var shadow = widget.shadowRoot;
-      if (shadow) {
-        var style = document.createElement('style');
-        style.textContent = `
-          :host { position: static !important; }
-          * { position: static !important; bottom: auto !important; right: auto !important; }
-        `;
-        shadow.appendChild(style);
-        observer.disconnect();
-      }
-    });
-    observer.observe(widget, { childList: true, subtree: true });
   </script>
+
 </body>
 </html>
