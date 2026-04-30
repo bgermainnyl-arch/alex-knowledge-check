@@ -4,35 +4,35 @@
   <meta charset="UTF-8">
   <title>Whole Life Insurance — Knowledge Check</title>
   <style>
-    body { margin: 0; background: #1a1a2e; 
-           display: flex; flex-direction: column;
-           align-items: center; justify-content: center; 
-           min-height: 100vh; font-family: Arial, sans-serif; }
-    h1 { color: #ffffff; margin-bottom: 2rem; font-size: 1.5rem; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #ffffff;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    #widget-frame {
+      width: 420px;
+      height: 160px;
+      max-width: 95vw;
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
   <h1>Whole Life Insurance — Knowledge Check</h1>
-
-  <div id="widget-container"></div>
-
-  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" 
-          async type="text/javascript"></script>
-  <script>
-    // Read URL parameters
-    var params = new URLSearchParams(window.location.search);
-    var userID = params.get('user_id') || 'Unknown';
-    var courseID = params.get('course_id') || 'NYL-BG-TEST';
-
-    // Build the widget element dynamically so dynamic-variables are set before initialization
-    var widget = document.createElement('elevenlabs-convai');
-    widget.setAttribute('agent-id', 'agent_6601kpbt8628er29rfw2x8zesrby');
-    widget.setAttribute('dynamic-variables', JSON.stringify({
-      user_id: userID,
-      course_id: courseID
-    }));
-
-    document.getElementById('widget-container').appendChild(widget);
-  </script>
+  <iframe id="widget-frame" src="widget.html"></iframe>
 </body>
 </html>
