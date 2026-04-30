@@ -21,18 +21,44 @@
       text-align: center;
       padding: 0 1rem;
     }
-    #widget-frame {
-      width: 420px;
-      height: 160px;
-      max-width: 95vw;
-      border: none;
-      border-radius: 16px;
-      overflow: hidden;
+    elevenlabs-convai {
+      display: block;
+      position: static !important;
     }
   </style>
 </head>
 <body>
   <h1>Whole Life Insurance — Knowledge Check</h1>
-  <iframe id="widget-frame" src="widget.html"></iframe>
+
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          async type="text/javascript"></script>
+  <script>
+    var params = new URLSearchParams(window.location.search);
+    var userID = params.get('user_id') || 'Unknown';
+    var courseID = params.get('course_id') || 'NYL-BG-TEST';
+
+    var widget = document.createElement('elevenlabs-convai');
+    widget.setAttribute('agent-id', 'agent_6601kpbt8628er29rfw2x8zesrby');
+    widget.setAttribute('dynamic-variables', JSON.stringify({
+      user_id: userID,
+      course_id: courseID
+    }));
+    document.body.appendChild(widget);
+
+    // Watch for shadow DOM and override fixed positioning
+    var observer = new MutationObserver(function() {
+      var shadow = widget.shadowRoot;
+      if (shadow) {
+        var style = document.createElement('style');
+        style.textContent = `
+          :host { position: static !important; }
+          * { position: static !important; bottom: auto !important; right: auto !important; }
+        `;
+        shadow.appendChild(style);
+        observer.disconnect();
+      }
+    });
+    observer.observe(widget, { childList: true, subtree: true });
+  </script>
 </body>
 </html>
